@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management System</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Restaurant Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="#reservations">Reservations</a></li>
+                <li><a href="#orders">Orders</a></li>
+                <li><a href="#inventory">Inventory</a></li>
+                <li><a href="#user-management">User Management</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="reservations">
+            <h2>Reservations</h2>
+            <form id="reservation-form">
+                <label for="customer-name">Name:</label>
+                <input type="text" id="customer-name" name="customer-name" required>
+                <label for="reservation-date">Date:</label>
+                <input type="date" id="reservation-date" name="reservation-date" required>
+                <label for="reservation-time">Time:</label>
+                <input type="time" id="reservation-time" name="reservation-time" required>
+                <label for="party-size">Party Size:</label>
+                <input type="number" id="party-size" name="party-size" required>
+                <button type="submit">Make Reservation</button>
+            </form>
+            <div id="reservations-list">
+                <!-- List of reservations will be displayed here -->
+            </div>
+        </section>
+
+        <section id="orders">
+            <h2>Orders</h2>
+            <form id="order-form">
+                <label for="table-number">Table Number:</label>
+                <input type="number" id="table-number" name="table-number" required>
+                <label for="menu-item">Menu Item:</label>
+                <input type="text" id="menu-item" name="menu-item" required>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" required>
+                <button type="submit">Place Order</button>
+            </form>
+            <div id="orders-list">
+                <!-- List of orders will be displayed here -->
+            </div>
+        </section>
+
+        <section id="inventory">
+            <h2>Inventory Management</h2>
+            <form id="inventory-form">
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name" name="item-name" required>
+                <label for="item-quantity">Quantity:</label>
+                <input type="number" id="item-quantity" name="item-quantity" required>
+                <label for="item-threshold">Restock Threshold:</label>
+                <input type="number" id="item-threshold" name="item-threshold" required>
+                <button type="submit">Update Inventory</button>
+            </form>
+            <div id="inventory-list">
+                <!-- List of inventory items will be displayed here -->
+            </div>
+        </section>
+
+        <section id="user-management">
+            <h2>User Management</h2>
+            <form id="user-form">
+                <label for="user-name">User Name:</label>
+                <input type="text" id="user-name" name="user-name" required>
+                <label for="user-role">Role:</label>
+                <select id="user-role" name="user-role">
+                    <option value="waiter">Waiter</option>
+                    <option value="manager">Manager</option>
+                    <option value="chef">Chef</option>
+                </select>
+                <button type="submit">Add User</button>
+            </form>
+            <div id="users-list">
+                <!-- List of users will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Restaurant Management System</p>
+    </footer>
+
+    <script src="scripts.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
