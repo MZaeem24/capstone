@@ -22,7 +22,10 @@ const router = createBrowserRouter([
   { path: "/register", element: <Register /> },
   { path: "/dashboard", element: <Dashboard /> },
   { path: "/manage-vouchers", element: <ManageVouchers /> },
-  { path: "/booking-confirmation/:id/:time", element: <BookingConfirmation /> },
+  {
+    path: "/booking-confirmation/:id/:time/:date/:days",
+    element: <BookingConfirmation />,
+  },
   { path: "/customer-dashboard", element: <CustomerDashboard /> },
   { path: "/booking-history", element: <BookingHistory /> },
   { path: "/submit-review/:id", element: <ReviewSubmission /> },

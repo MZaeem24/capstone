@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import VoucherCard from "../components/VoucherCard";
 import ReviewCard from "../components/ReviewCard";
 import { API_URL } from "@/api/api";
@@ -33,6 +33,8 @@ interface Voucher {
   discountPercentage: number;
   timeRange: string;
   available: number;
+  dateRange: string;
+  daysAvailable: string[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   length: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,12 +50,12 @@ const RestaurantProfile = () => {
   const [error, setError] = useState(""); // State to handle errors
 
   const user = getUser();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (user?.role !== "customer" && user?.role !== "restaurant") {
-      navigate("/");
-    }
-  }, []);
+  //   const navigate = useNavigate();
+  //   useEffect(() => {
+  //     if (user?.role !== "customer" && user?.role !== "restaurant") {
+  //       navigate("/");
+  //     }
+  //   }, []);
 
   useEffect(() => {
     const fetchRestaurant = async () => {
@@ -135,6 +137,8 @@ const RestaurantProfile = () => {
               restaurantId={voucher.restaurantId}
               discountPercentage={voucher.discountPercentage}
               timeRange={voucher.timeRange}
+              dateRange={voucher.dateRange}
+              daysAvailable={voucher.daysAvailable}
               available={voucher.available}
             />
           </div>
@@ -144,7 +148,7 @@ const RestaurantProfile = () => {
       )}
 
       <h2 className="text-xl font-bold mt-4">Customer Reviews</h2>
-      {user.role === "customer" && (
+      {user?.role === "customer" && (
         <button className="bg-primary-dark rounded-sm py-1 px-2 text-white my-2">
           <Link to={`/submit-review/${id}`}>Add your review</Link>
         </button>

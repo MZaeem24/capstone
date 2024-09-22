@@ -11,6 +11,8 @@ interface Voucher {
   discountPercentage: number;
   timeRange: string;
   available: number;
+  dateRange: string;
+  daysAvailable: string[];
 }
 
 const Recommendations = () => {
@@ -106,6 +108,8 @@ const Recommendations = () => {
               timeRange={voucher.timeRange}
               available={voucher.available}
               restaurantId={voucher.restaurantId}
+              daysAvailable={voucher.daysAvailable}
+              dateRange={voucher.dateRange}
             />
           ))
         ) : (

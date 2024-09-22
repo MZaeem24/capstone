@@ -8,19 +8,24 @@ interface VoucherCardProps {
   restaurantId: string;
   discountPercentage: number;
   timeRange: string;
+  dateRange: string;
+  daysAvailable: string[];
   available: number;
 }
 
 const VoucherCard: React.FC<VoucherCardProps> = ({
   _id,
-  restaurantId,
+  // restaurantId,
   discountPercentage,
   timeRange,
+  dateRange,
+  daysAvailable,
   available,
 }) => {
+  console.log(daysAvailable);
   const handleBookVoucher = async () => {
     try {
-      const response = await fetch(`${API_URL}/bookings/book/${restaurantId}`, {
+      const response = await fetch(`${API_URL}/bookings/book/${_id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,10 +72,12 @@ const VoucherCard: React.FC<VoucherCardProps> = ({
       <div>
         <h4 className="font-semibold">{discountPercentage}% Off</h4>
         <p>Valid on all items</p>
-        <p>Expiry: {timeRange}</p>
+        <p>Valid from: {dateRange}</p>
+        <p>Between: {timeRange}</p>
+        <p>Available On days: {daysAvailable?.join(", ")}</p>
         <p>Available Vouchers: {available}</p>
       </div>
-      {getUser().role === "customer" && (
+      {getUser()?.role === "customer" && (
         <button
           onClick={handleBookVoucher}
           className="bg-primary-dark text-white py-1 px-2 rounded-sm mt-2 cursor-pointer"
@@ -78,7 +85,7 @@ const VoucherCard: React.FC<VoucherCardProps> = ({
           Book now
         </button>
       )}
-      {getUser().role === "restaurant" && (
+      {getUser()?.role === "restaurant" && (
         <button
           onClick={handleDeleteVoucher}
           className="bg-red-600 text-white py-1 px-2 rounded-sm mt-2 cursor-pointer"

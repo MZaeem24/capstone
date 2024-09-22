@@ -9,6 +9,6 @@ router.get('/vouchers', getAvailableVouchers);
 router.post('/', getBookings);
 
 // Route to book a voucher (requires authentication)
-router.post('/book/:restaurantId', bookVoucher);
+router.post('/book/:_id', bookVoucher);
 
 export default router;

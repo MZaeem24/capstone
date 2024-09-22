@@ -34,14 +34,14 @@ export const getBookings = async (req: Request, res: Response) => {
 
 // Book a voucher for a specific restaurant
 export const bookVoucher = async (req: Request, res: Response) => {
-  const { restaurantId } = req.params;
+  const { _id } = req.params;
   const { userId } = req.body;
   if (!userId) {
     return res.status(401).json({ error: 'Not authorized, user not found' });
   }
 
   try {
-    const voucher = await Voucher.findOne({ restaurantId: restaurantId, available: { $gt: 0 } });
+    const voucher = await Voucher.findById({ _id, available: { $gt: 0 } });
 
     if (!voucher) {
       return res.status(400).json({ error: 'No vouchers available' });
@@ -50,7 +50,7 @@ export const bookVoucher = async (req: Request, res: Response) => {
     // Create a new booking
     const booking = await Booking.create({
       user: userId,
-      restaurant: restaurantId,
+      restaurant: voucher.restaurantId,
       voucher: voucher._id,
       timeRange: voucher.timeRange,
     });

@@ -12,8 +12,16 @@ const VoucherSchema: Schema = new Schema({
     type: Number,
     required: true,
   },
+  dateRange: {
+    type: String,
+    required: true,
+  },
   timeRange: {
     type: String,
+    required: true,
+  },
+  daysAvailable: {
+    type: [String],
     required: true,
   },
   available: {

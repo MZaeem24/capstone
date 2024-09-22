@@ -21,6 +21,8 @@ interface Booking {
     restaurantId: string;
     discountPercentage: number;
     timeRange: string;
+    dateRange: string;
+    daysAvailable: string[];
     available: number;
   };
   status: string;
@@ -66,16 +68,22 @@ const CustomerDashboard = () => {
     <div>
       <h1 className="text-2xl font-bold">Your Bookings</h1>
       <div className="mt-4">
-        {bookings.length > 0 ? (
+        {bookings?.length > 0 ? (
           <ul>
-            {bookings.map((booking) => (
-              <li key={booking._id} className="mb-2 p-2 border rounded">
-                <h2 className="font-semibold">{booking.restaurant.name}</h2>
-                <p>Discount: {booking.voucher.discountPercentage} %</p>
-                <p>Time: {booking.timeRange}</p>
+            {bookings?.map((booking) => (
+              <li key={booking?._id} className="mb-2 p-2 border rounded">
+                <h2 className="font-semibold">{booking?.restaurant?.name}</h2>
+                <p>Discount: {booking?.voucher?.discountPercentage} %</p>
+                <p>Date: {booking?.voucher?.dateRange}</p>
+                <p>Time: {booking?.timeRange}</p>
+                <p>Days: {booking?.voucher?.daysAvailable.join(", ")}</p>
                 <button className="bg-primary py-1 px-2 text-white cursor-pointer rounded-sm mt-2">
                   <Link
-                    to={`/booking-confirmation/${booking.voucher._id}/${booking.timeRange}`}
+                    to={`/booking-confirmation/${booking?.voucher?._id}/${
+                      booking?.timeRange
+                    }/${
+                      booking?.voucher?.dateRange
+                    }/${booking?.voucher?.daysAvailable?.join(", ")}`}
                   >
                     View detail
                   </Link>
